@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+ 
 struct tien
 {
 	int an;
@@ -26,12 +26,13 @@ struct tien
 	int diChoi;
 };
 
-char* inThoiGian(const struct tm *timeptr)
+char* timeToString(const struct tm *timeptr)
 {
 	/**
-	 * //source: http://www.cplusplus.com/reference/ctime/asctime/
+	 * Source: http://www.cplusplus.com/reference/ctime/asctime/
 	 * Read about time.h and asctime()
-	 * This funtion will print date and time
+	 * -------------------------------
+	 * This funtion get time from system and convert it to string
 	 * This funtion edited for Vietnamese
 	 */
 	
@@ -52,22 +53,29 @@ char* inThoiGian(const struct tm *timeptr)
   	return result;
 }
 
-void nhapDuLieuNgay(tien tienNgay)
+void inThoiGian()
 {
+	time_t rawtime;
+	struct tm * timeinfo;
+	time (&rawtime);
+	timeinfo = localtime (&rawtime);
+	printf ("Hom nay la: %s", timeToString(timeinfo));
 
+}
+
+void nhapDuLieuNgay(tien *tienNgay)
+{
+	printf("Nhap tien an hom nay: ");
+	//tienNgay.an - > tien.an
 }
  
 int main()
 {
-	time_t rawtime;
-		struct tm * timeinfo;
-		time (&rawtime);
-		timeinfo = localtime (&rawtime);
-		printf ("Current local time and date: %s", inThoiGian(timeinfo));
+	tien tienNgay
+	tien *ptienNgay = &tienNgay;
+	inThoiGian();
+	nhapDuLieuNgay(&ptienNgay);
 
-	tien tienNgay;
-	int nam;
-	tienNgay.an = 100000;
-	printf ("tien an: %d \n", timeinfotm_yea->nam;
+	printf ("tien an: %d \n");
 return 0;
 }
