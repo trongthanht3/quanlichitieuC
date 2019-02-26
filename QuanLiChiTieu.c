@@ -65,17 +65,46 @@ void inThoiGian()
 
 void nhapDuLieuNgay(tien *tienNgay)
 {
-	printf("Nhap tien an hom nay: ");
-	//tienNgay.an - > tien.an
+//	i'm trying to read struct auto by list from top to down but i don't know how to do
+//	toi dang thu nhap du lieu cho struct mot cach tu dong tu tren xuong nhung khong biet cach
+	/*const char donVi[][11] = {
+		"an", "tieu vat", "di lai", "dien thoai", "online", "banking", "linh tinh", "di choi"
+	};
+	int i = 0;
+	while (i < 8) {
+		printf("Nhap tien %s hom nay: ", donVi[i]);
+		scanf("%d", &tienNgay -> )
+		i++;
+	};*/
+//	so i did it by normal method
+//	nen toi lam theo cach thong thuong
+	printf("Nhap tien an: ");
+	scanf("%d", &tienNgay -> an);
+	printf("Nhap tien tieu vat: ");
+	scanf("%d", &tienNgay -> tieuVat);
+	printf("Nhap tien di lai: ");
+	scanf("%d", &tienNgay -> dienThoai);
+	printf("Nhap tien linh tinh");
+	scanf("%d", &tienNgay -> linhTinh);
 }
  
 int main()
 {
-	tien tienNgay
+	tien tienNgay;
 	tien *ptienNgay = &tienNgay;
 	inThoiGian();
-	nhapDuLieuNgay(&ptienNgay);
-
-	printf ("tien an: %d \n");
+//	nhapDuLieuNgay(ptienNgay);
+	FILE *fPtr;
+	const char meme[][12] = {"dit me may"};
+	fPtr = fopen("file1.txt", "w");
+	if (fPtr == NULL) {
+		/*khong tao duoc file*/
+		printf("cant create file\n");
+		exit(EXIT_FAILURE);
+	};
+	fputs(meme, fPtr);
+	fclose(fPtr);
+	printf("k, wellplayed\n");
+//	printf ("tien an: %d \n", tienNgay.an);
 return 0;
 }
