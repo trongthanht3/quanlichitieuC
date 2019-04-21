@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
- 
+#include "prototype.h"
+
 // shit struct, don't work on macos
 struct tien
 {
@@ -11,20 +12,20 @@ struct tien
 	int tieuVat;
 	int diLai;
 	int dienThoai;
-	struct online
-	{
-		int shopee;
-		int tiki;
-		int lazada;
-		int fahasa;
-	};
-	struct banking
-	{
-		int dang_no;
-		int cho_vay;
-	};
 	int linhTinh;
 	int diChoi;
+};
+struct online
+{
+	int shopee;
+	int tiki;
+	int lazada;
+	int fahasa;
+};
+struct banking
+{
+	int dang_no;
+	int cho_vay;
 };
 
 char* timeToString(const struct tm *timeptr)
@@ -64,7 +65,7 @@ void inThoiGian()
 
 }
 
-void nhapDuLieuNgay(tien *tienNgay)
+void nhapDuLieuNgay(struct tien *tienNgay)
 {
 //	i'm trying to read struct auto by list from top to down but i don't know how to do
 //	toi dang thu nhap du lieu cho struct mot cach tu dong tu tren xuong nhung khong biet cach
@@ -85,27 +86,46 @@ void nhapDuLieuNgay(tien *tienNgay)
 	scanf("%d", &tienNgay -> tieuVat);
 	printf("Nhap tien di lai: ");
 	scanf("%d", &tienNgay -> dienThoai);
-	printf("Nhap tien linh tinh");
+	printf("Nhap tien linh tinh: ");
 	scanf("%d", &tienNgay -> linhTinh);
 }
  
 int main()
 {
-	tien tienNgay;
-	tien *ptienNgay = &tienNgay;
+	struct tien tienNgay;
+	struct tien *ptienNgay = &tienNgay;
+	char doi[10];
+
+/*/	convert int to string - stackoverflow
+	int num = 1400000;
+	char snum[10];
+	// convert 123 to string [buf]
+	itoa(tienNgay.an, snum, 10);
+	// print our string
+	printf("%s\n", snum);
+*/
 	inThoiGian();
-//	nhapDuLieuNgay(ptienNgay);
+	nhapDuLieuNgay(ptienNgay);
+
+	char snum[10];
+	// convert 123 to string [buf]
+	itoa(tienNgay.an, snum, 10);
+	// print our string
+	printf("%s\n", snum);
+	
 	FILE *fPtr;
 	const char meme[][12] = {"dit me may"};
 	fPtr = fopen("file1.txt", "w");
+
 	if (fPtr == NULL) {
 		/*khong tao duoc file*/
 		printf("cant create file\n");
 		exit(EXIT_FAILURE);
 	};
-	fputs(meme, fPtr);
+
+//	fputs(*doi, fPtr);
 	fclose(fPtr);
 	printf("k, wellplayed\n");
 //	printf ("tien an: %d \n", tienNgay.an);
-return 0;
+	return 0;
 }
